@@ -4,11 +4,12 @@ import { eq, or } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import bcrypt from 'bcrypt';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function POST(req: { json: () => any; }) {
     const body = await req.json();
-    const { username, email, no_hp, password } = body;
+    const { name, email, no_hp, password } = body;
 
-    if (!username || !email || !no_hp || !password) {
+    if (!name || !email || !no_hp || !password) {
         return new NextResponse("Missing name, email, or password", {status: 400});
     }
 
@@ -18,7 +19,7 @@ export async function POST(req: { json: () => any; }) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await db.insert(users).values({name: username, email, no_hp, password: hashedPassword}).returning();
+    const user = await db.insert(users).values({name: name, email, no_hp, password: hashedPassword}).returning();
 
     return NextResponse.json(user);
 }
