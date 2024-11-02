@@ -6,15 +6,17 @@ const Navbar = () => {
         <nav className="fixed w-full z-20 py-4 backdrop-blur border-b border-b-gray-300 text-white">
             <div className="container mx-auto flex justify-between items-center">
                 <aside className="flex items-center text-sm">
-                    <Image 
-                        src="/icons/logo.png"
-                        alt="logo"
-                        width={160}
-                        height={60}
-                        className="mr-14"
-                    />
+                    <Link href="/">
+                        <Image 
+                            src="/icons/logo.png"
+                            alt="logo"
+                            width={160}
+                            height={60}
+                            className="mr-14"
+                        />
+                    </Link>
                     <p className="mr-8"><Link href="/">Beranda</Link></p>
-                    <p><Link href="/">Rekomendasi Belajar</Link></p>
+                    <p><Link href="/generate-materi">Generate Materi</Link></p>
                 </aside>
                 <aside>
                     <div className="bg-[#5C71D2] p-2 rounded-2xl">
