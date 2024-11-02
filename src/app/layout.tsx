@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Materikuy",
@@ -17,7 +16,6 @@ export default function RootLayout({
       <body
         className={`antialiased bg-gradient-to-r from-[#99A6D5] to-[#5B75FE]`}
       >
-        <Navbar />
         {children}
       </body>
     </html>

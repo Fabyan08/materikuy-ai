@@ -1,0 +1,24 @@
+import { db } from "@/db";
+import { users } from "@/db/schema";
+import { eq, or } from "drizzle-orm";
+import { NextResponse } from "next/server";
+import bcrypt from 'bcrypt';
+
+export async function POST(req: { json: () => any; }) {
+    const body = await req.json();
+    const { username, email, no_hp, password } = body;
+
+    if (!username || !email || !no_hp || !password) {
+        return new NextResponse("Missing name, email, or password", {status: 400});
+    }
+
+    const exist = await db.select().from(users).where(or(eq(users.email, email), eq(users.no_hp, no_hp)));
+    
+    if (exist.length >= 1) return new NextResponse("User already exists", {status: 400});
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await db.insert(users).values({name: username, email, no_hp, password: hashedPassword}).returning();
+
+    return NextResponse.json(user);
+}

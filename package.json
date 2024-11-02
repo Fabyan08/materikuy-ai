@@ -11,19 +11,25 @@
     "db:migrate": "tsx ./src/db/migrate.ts"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.7.2",
     "@google/generative-ai": "^0.21.0",
     "@neondatabase/serverless": "^0.10.1",
+    "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.36.0",
     "lottie-react": "^2.4.0",
     "next": "15.0.1",
+    "next-auth": "^4.24.10",
+    "next-nprogress-bar": "^2.3.14",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
     "react-markdown": "^9.0.1",
+    "react-toastify": "^10.0.6",
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
