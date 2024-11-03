@@ -5,7 +5,7 @@ export default function Dashboard() {
                 <p className="text-xl mb-3 text-white">Selamat datang, 👋</p>
                 <div className="border-2 border-[#FFE1B5] rounded-xl w-[110px] mx-auto"></div>
             </div>
-            <p>Ini Dashboard</p>
+            <p>Ini Setting Profile</p>
         </div>
     )
 }
