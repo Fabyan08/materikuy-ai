@@ -27,13 +27,9 @@ export const histories = pgTable('histories', {
     durasi_belajar: durasiBelajarEnum().default('Satu bulan'),
     deskripsi: text('deskripsi').notNull(),
     response: text('response').notNull(),
-    userId: integer('user_id').references(() => users.id),
+    userId: text('user_id').references(() => users.id),
     ...timestamps
 });
-
-export const usersRelations = relations(users, ({many}) => ({
-    histories: many(histories)
-}))
 
 export const historiesRelations = relations(histories, ({one}) => ({
     user: one(users, {
@@ -41,7 +37,30 @@ export const historiesRelations = relations(histories, ({one}) => ({
         references: [users.id]
     })
 }))
-   
+
+export const bookmarks = pgTable('bookmarks', {
+    id: serial('id').primaryKey(),
+    materi: text('materi').notNull(),
+    tingkat: tingkatEnum().default('Pemula'),
+    durasi_belajar: durasiBelajarEnum().default('Satu bulan'),
+    deskripsi: text('deskripsi').notNull(),
+    response: text('response').notNull(),
+    userId: text('user_id').references(() => users.id),
+    ...timestamps
+});
+
+export const bookmarksRelations = relations(bookmarks, ({one}) => ({
+    user: one(users, {
+        fields: [bookmarks.userId],
+        references: [users.id]
+    })
+}))
+
+export const usersRelations = relations(users, ({many}) => ({
+    histories: many(histories),
+    bookmarks: many(bookmarks)
+}))
+
 export const accounts = pgTable("account",
     {
         userId: text("userId")
