@@ -80,7 +80,7 @@ export default function SignIn() {
                 Mau Belajar Apa Hari Ini?
             </button>
             <div className="container relative z-10 flex">
-                <aside className="bg-white bg-opacity-20 backdrop-blur flex-1 rounded-l-3xl font-urbanis pt-10 pl-10 pr-5">
+                <aside className="bg-white bg-opacity-20 backdrop-blur flex-1 rounded-3xl md:rounded-l-3xl font-urbanis pt-10 pl-10 pr-5">
                     <p className="font-bold text-4xl">Haiii 👋🏻</p>
                     <p className="text-xl">Yuk masuk ke akunmu...</p>
                     <form onSubmit={signInUser} className="bg-white rounded-3xl translate-y-14 pt-10 px-8">
@@ -97,7 +97,7 @@ export default function SignIn() {
                         <Image src="/gembok.png" alt="gembok" className="mx-auto translate-y-16" width={200} height={100} />
                     </form>
                 </aside>
-                <aside className="bg-[url('/bgauth.png')] bg-cover flex-1 rounded-r-3xl relative flex justify-center items-center">
+                <aside className="bg-[url('/bgauth.png')] hidden  bg-cover flex-1 rounded-r-3xl relative md:flex justify-center items-center">
                     <div className="w-[70%] h-[80%] rounded-3xl border border-white bg-white bg-opacity-30 backdrop-blur p-8">
                         <Image src="/icons/logo.png" alt="logo" width={180} height={100} />
                     </div>
