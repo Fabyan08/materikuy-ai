@@ -2,8 +2,8 @@
 import Ripple from "@/components/ripple";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import SpinnerLoadIcon from "../../../../public/icons/spinnerloadicon";
@@ -53,25 +53,6 @@ export default function SignIn() {
       router.replace("/dashboard");
     }
   };
-
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const callbackError = searchParams?.get("error");
-
-    if (callbackError === "OAuthAccountNotLinked") {
-      toast.error("Email is already used at another provider 😉", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-  }, [searchParams]);
 
   return (
     <Suspense fallback={<SpinnerLoadIcon />}>
