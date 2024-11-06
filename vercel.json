@@ -1,0 +1,7 @@
+{
+    "functions": {
+      "src/app/generate-materi/*.tsx": {
+        "maxDuration": 59
+      }
+    }
+  }
