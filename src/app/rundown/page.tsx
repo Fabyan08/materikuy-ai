@@ -214,165 +214,169 @@ export default function Rundown() {
       <div className="flex justify-center items-center h-[70vh]">
         <Ripple />
       </div>
-      <div className="flex items-center justify-center w-full px-20 mt-10 h-screen">
+      <div className="flex items-center justify-center w-full md:px-20 mt-10 h-screen">
         <div className="w-full h-[80vh] flex flex-col items-center justify-center bg-white p-4">
           <h1 className="text-3xl font-bold mb-4 text-gray-500">Rundown</h1>
 
-          <DragDropContext onDragEnd={onDragEnd}>
-            <div className="flex overflow-x-auto w-full gap-4 pb-4">
-              {Object.entries(columns).map(([columnId, column]) => (
-                <div key={columnId}>
-                  <Droppable droppableId={columnId}>
-                    {(provided, snapshot) => (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        className="bg-blue-100 p-4 rounded-lg min-w-[250px] max-h-[60vh] overflow-y-auto"
-                        style={{
-                          backgroundColor: snapshot.isDraggingOver
-                            ? "#a0c4ff"
-                            : "#d0e1ff",
-                        }}
-                      >
-                        <h2 className="text-blue-900 font-bold mb-2">
-                          {column.title}
-                        </h2>
-                        {column.items.map((item, index) => (
-                          <Draggable
-                            key={item.id}
-                            draggableId={item.id}
-                            index={index}
-                          >
-                            {(provided, snapshot) => (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                className={`p-3 mb-2 rounded shadow ${
-                                  snapshot.isDragging
-                                    ? "bg-blue-300"
-                                    : "bg-white"
-                                } text-black`}
-                              >
-                                <div className="flex justify-between items-center">
-                                  <span className="mr-2">{item.content}</span>
-                                  <div className="flex gap-2">
-                                    <button
-                                      onClick={() => {
-                                        setEditItem({
-                                          columnId: columnId as ColumnId,
-                                          item,
-                                        });
+          <div className="flex justify-center items-center">
+            <DragDropContext onDragEnd={onDragEnd}>
+              <div className="flex flex-col md:flex-row overflow-x-auto w-full gap-4 pb-4">
+                {Object.entries(columns).map(([columnId, column]) => (
+                  <div key={columnId}>
+                    <Droppable droppableId={columnId}>
+                      {(provided, snapshot) => (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          className="bg-blue-100 p-4 rounded-lg min-w-[250px] max-h-[60vh] overflow-y-auto"
+                          style={{
+                            backgroundColor: snapshot.isDraggingOver
+                              ? "#a0c4ff"
+                              : "#d0e1ff",
+                          }}
+                        >
+                          <h2 className="text-blue-900 font-bold mb-2">
+                            {column.title}
+                          </h2>
+                          {column.items.map((item, index) => (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  className={`p-3 mb-2 rounded shadow ${
+                                    snapshot.isDragging
+                                      ? "bg-blue-300"
+                                      : "bg-white"
+                                  } text-black`}
+                                >
+                                  <div className="flex justify-between items-center">
+                                    <span className="mr-2">{item.content}</span>
+                                    <div className="flex gap-2">
+                                      <button
+                                        onClick={() => {
+                                          setEditItem({
+                                            columnId: columnId as ColumnId,
+                                            item,
+                                          });
 
-                                        const { task, date } = parseItemContent(
-                                          item.content
-                                        );
+                                          const { task, date } =
+                                            parseItemContent(item.content);
 
-                                        setEditedTask({ content: task, date });
-                                      }}
-                                    >
-                                      📝
-                                    </button>
-                                    <button
-                                      onClick={() =>
-                                        handleDeleteItem(
-                                          columnId as ColumnId,
-                                          item.id
-                                        )
-                                      }
-                                      className="text-red-500 text-sm"
-                                    >
-                                      ❌
-                                    </button>
+                                          setEditedTask({
+                                            content: task,
+                                            date,
+                                          });
+                                        }}
+                                      >
+                                        📝
+                                      </button>
+                                      <button
+                                        onClick={() =>
+                                          handleDeleteItem(
+                                            columnId as ColumnId,
+                                            item.id
+                                          )
+                                        }
+                                        className="text-red-500 text-sm"
+                                      >
+                                        ❌
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            )}
-                          </Draggable>
-                        ))}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
+                              )}
+                            </Draggable>
+                          ))}
+                          {provided.placeholder}
+                        </div>
+                      )}
+                    </Droppable>
 
-                  {/* Input Tambah Tugas */}
-                  <div className="mt-4 w-full max-w-xs">
-                    <input
-                      type="text"
-                      placeholder="Isi tugas..."
-                      value={newTasks[columnId as ColumnId].content}
-                      onChange={(e) =>
-                        handleInputChange(
-                          columnId as ColumnId,
-                          "content",
-                          e.target.value
-                        )
-                      }
-                      className="w-full mb-2 p-2 border rounded text-black"
-                    />
-                    <input
-                      type="date"
-                      value={newTasks[columnId as ColumnId].date}
-                      onChange={(e) =>
-                        handleInputChange(
-                          columnId as ColumnId,
-                          "date",
-                          e.target.value
-                        )
-                      }
-                      className="w-full mb-2 p-2 border rounded text-black"
-                    />
+                    {/* Input Tambah Tugas */}
+                    <div className="mt-4 w-full max-w-xs">
+                      <input
+                        type="text"
+                        placeholder="Isi tugas..."
+                        value={newTasks[columnId as ColumnId].content}
+                        onChange={(e) =>
+                          handleInputChange(
+                            columnId as ColumnId,
+                            "content",
+                            e.target.value
+                          )
+                        }
+                        className="w-full mb-2 p-2 border rounded text-black"
+                      />
+                      <input
+                        type="date"
+                        value={newTasks[columnId as ColumnId].date}
+                        onChange={(e) =>
+                          handleInputChange(
+                            columnId as ColumnId,
+                            "date",
+                            e.target.value
+                          )
+                        }
+                        className="w-full mb-2 p-2 border rounded text-black"
+                      />
+                      <button
+                        onClick={() => handleAddTask(columnId as ColumnId)}
+                        className="bg-blue-600 text-white px-4 py-2 rounded w-full"
+                      >
+                        Tambah Tugas
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </DragDropContext>
+            {editItem && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className="bg-white p-6 rounded-lg max-w-sm w-full">
+                  <h2 className="text-lg font-bold mb-4 text-gray-800">
+                    Edit Tugas
+                  </h2>
+                  <input
+                    type="text"
+                    placeholder="Isi tugas..."
+                    className="w-full p-2 border rounded text-black mb-2"
+                    value={editedTask.content}
+                    onChange={(e) =>
+                      setEditedTask({ ...editedTask, content: e.target.value })
+                    }
+                  />
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded text-black mb-4"
+                    value={editedTask.date}
+                    onChange={(e) =>
+                      setEditedTask({ ...editedTask, date: e.target.value })
+                    }
+                  />
+                  <div className="flex justify-end gap-2">
                     <button
-                      onClick={() => handleAddTask(columnId as ColumnId)}
-                      className="bg-blue-600 text-white px-4 py-2 rounded w-full"
+                      onClick={() => setEditItem(null)}
+                      className="px-4 py-2 rounded bg-gray-400 text-white"
                     >
-                      Tambah Tugas
+                      Batal
+                    </button>
+                    <button
+                      onClick={handleUpdateItem}
+                      className="px-4 py-2 rounded bg-blue-600 text-white"
+                    >
+                      Simpan
                     </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </DragDropContext>
-          {editItem && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-              <div className="bg-white p-6 rounded-lg max-w-sm w-full">
-                <h2 className="text-lg font-bold mb-4 text-gray-800">
-                  Edit Tugas
-                </h2>
-                <input
-                  type="text"
-                  placeholder="Isi tugas..."
-                  className="w-full p-2 border rounded text-black mb-2"
-                  value={editedTask.content}
-                  onChange={(e) =>
-                    setEditedTask({ ...editedTask, content: e.target.value })
-                  }
-                />
-                <input
-                  type="date"
-                  className="w-full p-2 border rounded text-black mb-4"
-                  value={editedTask.date}
-                  onChange={(e) =>
-                    setEditedTask({ ...editedTask, date: e.target.value })
-                  }
-                />
-                <div className="flex justify-end gap-2">
-                  <button
-                    onClick={() => setEditItem(null)}
-                    className="px-4 py-2 rounded bg-gray-400 text-white"
-                  >
-                    Batal
-                  </button>
-                  <button
-                    onClick={handleUpdateItem}
-                    className="px-4 py-2 rounded bg-blue-600 text-white"
-                  >
-                    Simpan
-                  </button>
-                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
