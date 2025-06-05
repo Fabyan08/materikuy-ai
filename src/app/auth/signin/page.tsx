@@ -56,7 +56,7 @@ export default function SignIn() {
 
   return (
     <Suspense fallback={<SpinnerLoadIcon />}>
-      <main className="relative flex pt-28 pb-36 w-full flex-col items-center justify-center overflow-hidden text-white">
+      <main className="relative flex pt-28  md:px-20 pb-36 w-full flex-col items-center justify-center overflow-hidden text-white">
         <button className="relative z-10 mx-auto flex items-center bg-[#2B243C] py-3 px-6 rounded-full font-space-grotes mb-10">
           <Image
             src="/icons/magic.png"

@@ -9,8 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        'urbanis': ['"Urbanist"', 'sans-serif'],
-        'space-grotes': ['"Space Grotesk"', 'sans-serif'],
+        urbanis: ['"Urbanist"', "sans-serif"],
+        "space-grotes": ['"Space Grotesk"', "sans-serif"],
+      },
+      animationDelay: {
+        150: "150ms",
+        300: "300ms",
       },
       colors: {
         background: "var(--background)",
@@ -31,8 +35,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

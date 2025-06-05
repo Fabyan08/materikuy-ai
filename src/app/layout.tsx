@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased bg-gradient-to-r from-[#99A6D5] to-[#5B75FE]`}
+        className={`antialiased bg-gradient-to-r from-[#99A6D5] to-[#5B75FE] `}
       >
         {children}
       </body>

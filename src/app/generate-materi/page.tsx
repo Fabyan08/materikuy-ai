@@ -4,11 +4,12 @@ import Ripple from "@/components/ripple";
 import Image from "next/image";
 import { bookmarkMateri, generateMateri } from "./actions";
 import { useState } from "react";
-import Markdown from "react-markdown";
-import Lottie from "lottie-react";
-import LoadingLottie from "./loading.json";
+// import Markdown from "react-markdown";
+// import Lottie from "lottie-react";
+// import LoadingLottie from "./loading.json";
 import BookmarkIcon from "../../../public/icons/bookmarkicon";
 import { toast } from "react-toastify";
+import dynamic from "next/dynamic";
 
 export default function GenerateMateri() {
   const [isGenerated, setIsGenerated] = useState(false);
@@ -31,7 +32,7 @@ export default function GenerateMateri() {
     const result = await generateMateri(formData);
 
     setIsLoading(false);
-    setResult(result);
+    setResult(result || "");
     setIsGenerated(true);
   };
 
@@ -74,6 +75,7 @@ export default function GenerateMateri() {
       setIsBookmarked(true);
     }
   };
+  const Markdown = dynamic(() => import("react-markdown"), { ssr: false });
 
   return (
     <div className="relative flex px-4 md:px-0 pt-32 pb-32 w-full flex-col items-center justify-center overflow-hidden text-white">
@@ -88,12 +90,16 @@ export default function GenerateMateri() {
         Mau Belajar Apa Hari Ini?
       </button>
       {isLoading ? (
-        <Lottie
-          animationData={LoadingLottie}
-          loop={true}
-          width={100}
-          className="relative z-10"
-        />
+        <div className="flex flex-col items-center justify-center h-60">
+          <div className="flex space-x-2">
+            <div className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"></div>
+            <div className="w-4 h-4 bg-purple-500 rounded-full animate-bounce delay-150"></div>
+            <div className="w-4 h-4 bg-pink-500 rounded-full animate-bounce delay-300"></div>
+          </div>
+          <p className="mt-4 text-white text-lg font-medium">
+            Tunggu sebentar, kami sedang memasak materi untukmu👨🏻‍🍳
+          </p>
+        </div>
       ) : isGenerated ? (
         <>
           <div className="text-center font-urbanis mb-6">
@@ -125,7 +131,7 @@ export default function GenerateMateri() {
       ) : (
         <form
           onSubmit={handleGenerateMateri}
-          className="font-urbanis relative z-10 container"
+          className="font-urbanis md:px-20 relative z-10 container"
         >
           <div className="flex flex-col mb-10">
             <label htmlFor="belajar_apa" className="text-2xl font-bold mb-2">

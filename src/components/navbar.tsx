@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed hidden md:block w-full z-20 py-4 backdrop-blur border-b border-b-gray-300 text-white">
+      <nav className="fixed hidden md:block w-full px-20 z-20 py-4 backdrop-blur border-b border-b-gray-300 text-white">
         <div className="container mx-auto flex justify-between items-center">
           <aside className="flex items-center text-sm">
             <Link href="/">
@@ -96,12 +96,14 @@ const Navbar = () => {
           </aside>
         </div>
       </nav>
-      <nav className="md:hidden fixed bottom-6 z-50 px-12 flex justify-center">
-        <div className="bg-white/40 backdrop-blur-md h-14 font-bold w-[18rem] px-4 rounded-full flex justify-between items-center text-white">
-          <Link href="/beranda">Beranda</Link>
-          <Link href="/generate-materi">Generate Materi</Link>
-        </div>
-      </nav>
+      <div className="flex justify-center">
+        <nav className="md:hidden fixed bottom-6 z-50 px-12 flex justify-center">
+          <div className="bg-gray-700/40 border-2 border-white backdrop-blur-md animate-bounce  h-14 font-bold w-[18rem] px-4 rounded-full flex justify-between items-center text-white">
+            <Link href="/beranda">Beranda</Link>
+            <Link href="/generate-materi">Generate Materi</Link>
+          </div>
+        </nav>
+      </div>
       <nav className="fixed md:hidden w-full px-10 z-50 py-4 backdrop-blur border-b border-b-gray-300 text-white">
         <div className="container mx-auto flex justify-between items-center">
           <aside className="flex items-center text-sm">

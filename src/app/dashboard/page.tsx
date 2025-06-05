@@ -7,7 +7,7 @@ export default async function Dashboard() {
     const userData = await getUser()
     
     return (
-        <div className="py-28">
+        <div className="py-28 md:px-20">
             <button className="relative z-10 flex mx-auto text-white font-semibold bg-[#2B243C] py-3 px-10 rounded-full font-space-grotes mb-10">
                 Profile
             </button>
