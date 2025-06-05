@@ -215,7 +215,7 @@ export default function Rundown() {
         <Ripple />
       </div>
       <div className="flex items-center justify-center w-full md:px-20 mt-10 h-screen">
-        <div className="w-full h-[80vh] flex flex-col items-center justify-center bg-white p-4">
+        <div className="w-full md:h-[80vh] flex flex-col items-center justify-center bg-white p-4">
           <h1 className="text-3xl font-bold mb-4 text-gray-500">Rundown</h1>
 
           <div className="flex justify-center items-center">

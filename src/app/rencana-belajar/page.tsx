@@ -128,13 +128,13 @@ export default function RencanaBelajar() {
   }, []);
 
   return (
-    <div className="relative flex px-4 md:px-0 w-full overflow-hidden text-black min-h-screen bgblue-300">
+    <div className="relative flex px-4 md:px-0 w-full overflow-x-hidden text-black min-h-screen bgblue-300">
       <div className="flex justify-center items-center h-[70vh]">
         <Ripple />
       </div>
 
       <div className="flex items-center justify-center w-full h-screen">
-        <div className="bg-white/90 relative mt-20 backdrop-blur-sm md:w-[10000px] w-[100vw] max-w-3xl h-[700px] md:h-fit flex flex-col justify-center items-center p-6 rounded-lg shadow-lg">
+        <div className="bg-white/90 relative md:mt-60  backdrop-blur-sm md:w-[10000px] w-[100vw]  max-w-3xl h-fit flex flex-col justify-center items-center p-6 rounded-lg shadow-lg">
           <div className="p-6 max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-6 text-center text-blue-800">
               Kalkulator Rencana Belajar Interaktif
