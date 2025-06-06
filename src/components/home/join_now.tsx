@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const JoinNow = () => {
   return (
-    <div className="px-20">
+    <div className="px-4 md:px-20">
       <div className=" mx-auto rounded-3xl bg-[#2B243C] py-14 font-urbanis">
         <Image
           src="/icons/logo.png"
