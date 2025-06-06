@@ -8,6 +8,7 @@ import { bookmarks, histories } from "@/db/schema";
 const apiKey = process.env.GEMINI_API_KEY || "";
 const ai = new GoogleGenAI({ apiKey });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generateMateri(formData: any) {
   const session = await getServerSession(authOptions);
 
@@ -18,20 +19,20 @@ export async function generateMateri(formData: any) {
         role: "user",
         parts: [
           {
-            text: `Materi : ${formData.materi_apa}\nTingkat : ${formData.tingkat}\nLama Belajar : ${formData.durasi_belajar}\nDeskripsi lebih lengkap : ${formData.desc_belajar}`
-          }
-        ]
-      }
-    ]
+            text: `Materi : ${formData.materi_apa}\nTingkat : ${formData.tingkat}\nLama Belajar : ${formData.durasi_belajar}\nDeskripsi lebih lengkap : ${formData.desc_belajar}`,
+          },
+        ],
+      },
+    ],
   });
 
   const text = result.text;
 
   if (session?.user) {
-    //@ts-expect-error
+    // @ts-expect-error: third-party library type mismatch
     const userId = session.user.id;
 
-    //@ts-expect-error
+    // @ts-expect-error: third-party library type mismatch
     await db.insert(histories).values({
       materi: formData.materi_apa,
       tingkat: formData.tingkat,
@@ -45,11 +46,12 @@ export async function generateMateri(formData: any) {
   return text;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function bookmarkMateri(formData: any, result: any) {
   const session = await getServerSession(authOptions);
 
   if (session?.user) {
-    //@ts-expect-error
+    // @ts-expect-error: third-party library type mismatch
     const userId = session.user.id;
 
     await db.insert(bookmarks).values({

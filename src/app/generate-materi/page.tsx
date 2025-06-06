@@ -23,7 +23,6 @@ export default function GenerateMateri() {
   });
   const [isBookmarked, setIsBookmarked] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleGenerateMateri = async (e: any) => {
     e.preventDefault();
     setIsGenerated(false);

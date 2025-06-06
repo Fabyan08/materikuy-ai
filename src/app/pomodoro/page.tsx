@@ -30,7 +30,8 @@ export default function Pomodoro() {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
