@@ -22,7 +22,7 @@ const Navbar = () => {
               />
             </Link>
             <p className="mr-8">
-              <Link href="/">Beranda</Link>
+              <Link href={session ? "/home" : "/"}>Beranda</Link>
             </p>
             <p className="mr-8">
               <Link href="/generate-materi">Generate Materi</Link>
@@ -107,7 +107,10 @@ const Navbar = () => {
       </nav>
       <div className="flex justify-center">
         <nav className="bg-gray-700/40 border-2 border-t-white rounded-t-xl backdrop-blur-md h-20 w-full grid grid-cols-5  items-center md:hidden fixed bottom-0 z-40 px-2">
-          <Link href="/" className="flex flex-col items-center gap-2 text-white">
+          <Link
+            href={session ? "/home" : "/"}
+            className="flex flex-col items-center gap-2 text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -120,7 +123,10 @@ const Navbar = () => {
             </svg>
             <p>Beranda</p>
           </Link>
-          <Link href="/generate-materi" className="flex flex-col items-center gap-2 text-white">
+          <Link
+            href="/generate-materi"
+            className="flex flex-col items-center gap-2 text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -133,7 +139,10 @@ const Navbar = () => {
             </svg>
             <p>Materi</p>
           </Link>
-          <Link href="/pomodoro" className="flex flex-col items-center gap-2 text-white">
+          <Link
+            href="/pomodoro"
+            className="flex flex-col items-center gap-2 text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -147,7 +156,10 @@ const Navbar = () => {
             </svg>
             <p>Pomodoro</p>
           </Link>
-          <Link href="/rundown" className="flex flex-col items-center gap-2 text-white">
+          <Link
+            href="/rundown"
+            className="flex flex-col items-center gap-2 text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -161,7 +173,10 @@ const Navbar = () => {
             </svg>
             <p>Rundown</p>
           </Link>
-          <Link href="/rencana-belajar" className="flex flex-col items-center gap-2 text-white">
+          <Link
+            href="/rencana-belajar"
+            className="flex flex-col items-center gap-2 text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -176,12 +191,6 @@ const Navbar = () => {
             <p>Belajar</p>
           </Link>
         </nav>
-        {/* <nav className="md:hidden fixed bottom-6 z-50 px-12 flex justify-center">
-          <div className="bg-gray-700/40 border-2 border-white backdrop-blur-md animate-bounce  h-14 font-bold w-[18rem] px-4 rounded-full flex justify-between items-center text-white">
-            <Link href="/beranda">Beranda</Link>
-            <Link href="/generate-materi">Generate Materi</Link>
-          </div>
-        </nav> */}
       </div>
       <nav className="fixed md:hidden w-full px-10 z-50 py-4 backdrop-blur border-b border-b-gray-300 text-white">
         <div className="container mx-auto flex justify-between items-center">

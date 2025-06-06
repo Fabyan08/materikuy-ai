@@ -3,7 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Materikuy",
-  description: "Buat Materi Belajarmu Sendiri. Terbaru, Praktis, Paling Efektif",
+  description:
+    "Buat Materi Belajarmu Sendiri. Terbaru, Praktis, Paling Efektif",
 };
 
 export default function RootLayout({
@@ -13,6 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icons/title.svg" type="image/svg+xml" />
+      </head>
       <body
         className={`antialiased bg-gradient-to-r from-[#99A6D5] to-[#5B75FE] `}
       >

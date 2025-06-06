@@ -18,7 +18,7 @@ export default async function Histories() {
                         histories.length == 0 ?
                         <p className="font-urbanis text-center text-xl">Kamu belum memiliki riwayat materi</p>
                         :
-                        <div className="font-urbanis grid grid-cols-2 gap-5 pb-8">
+                        <div className="font-urbanis grid md:grid-cols-2 gap-5 pb-8">
                             {
                                 histories.map((history) => 
                                     <div key={history.id} className="bg-[url('/bg-materi.png')] bg-cover pb-6 px-6 rounded-2xl h-[320px] flex justify-between items-end">
