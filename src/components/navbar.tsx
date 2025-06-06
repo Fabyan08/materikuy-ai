@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  const pathname = usePathname();
 
   return (
     <>
@@ -106,15 +108,19 @@ const Navbar = () => {
         </div>
       </nav>
       <div className="flex justify-center">
-        <nav className="bg-gray-700/40 border-2 border-t-white rounded-t-xl backdrop-blur-md h-20 w-full grid grid-cols-5  items-center md:hidden fixed bottom-0 z-40 px-2">
+        <nav className="bg-white w-[96vw] border-2 rounded-2xl border-t-white backdrop-blur-md h-20  grid grid-cols-5  items-center md:hidden fixed bottom-4 z-40 px-1 text-sm">
           <Link
             href={session ? "/home" : "/"}
-            className="flex flex-col items-center gap-2 text-white"
+            className={`flex flex-col items-center rounded-2xl py-2 gap-2 ${
+              pathname === (session ? "/home" : "/")
+                ? "bg-blue-200 text-blue-500"
+                : "text-gray-700"
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               fill="currentColor"
               className="bi bi-house"
               viewBox="0 0 16 16"
@@ -125,12 +131,16 @@ const Navbar = () => {
           </Link>
           <Link
             href="/generate-materi"
-            className="flex flex-col items-center gap-2 text-white"
+            className={`flex flex-col items-center gap-2 rounded-2xl py-2 ${
+              pathname === "/generate-materi"
+                ? "bg-blue-200 text-blue-500"
+                : "text-gray-700"
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               fill="currentColor"
               className="bi bi-magic"
               viewBox="0 0 16 16"
@@ -141,12 +151,16 @@ const Navbar = () => {
           </Link>
           <Link
             href="/pomodoro"
-            className="flex flex-col items-center gap-2 text-white"
+            className={`flex flex-col items-center gap-2 rounded-2xl py-2 ${
+              pathname === "/pomodoro"
+                ? "bg-blue-200 text-blue-500"
+                : "text-gray-700"
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               fill="currentColor"
               className="bi bi-alarm"
               viewBox="0 0 16 16"
@@ -158,12 +172,16 @@ const Navbar = () => {
           </Link>
           <Link
             href="/rundown"
-            className="flex flex-col items-center gap-2 text-white"
+            className={`flex flex-col items-center gap-2 rounded-2xl py-2 ${
+              pathname === "/rundown"
+                ? "bg-blue-200 text-blue-500"
+                : "text-gray-700"
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               fill="currentColor"
               className="bi bi-calendar-check"
               viewBox="0 0 16 16"
@@ -175,12 +193,16 @@ const Navbar = () => {
           </Link>
           <Link
             href="/rencana-belajar"
-            className="flex flex-col items-center gap-2 text-white"
+            className={`flex flex-col items-center gap-2 rounded-2xl py-2 ${
+              pathname === "/rencana-belajar"
+                ? "bg-blue-200 text-blue-500"
+                : "text-gray-700"
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               fill="currentColor"
               className="bi bi-award"
               viewBox="0 0 16 16"
